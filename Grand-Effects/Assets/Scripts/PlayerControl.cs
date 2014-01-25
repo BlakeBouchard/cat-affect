@@ -8,7 +8,7 @@ public class PlayerControl : MonoBehaviour {
 
     public float pushForce = 5.0f;
     public float jumpForce = 10.0f;
-    public float normalGravity = 9.81f;
+    public float normalGravity;
     public float maxSpeed = 20.0f;
 
     public bool isSwimming = true;
@@ -18,9 +18,23 @@ public class PlayerControl : MonoBehaviour {
     public float swimMaxSpeed = 4.0f;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start ()
+    {
+        normalGravity = rigidbody2D.gravityScale;
+        SwitchToSwim();
 	}
+
+    void SwitchToSwim()
+    {
+        isSwimming = true;
+        rigidbody2D.gravityScale = swimGravity;
+    }
+
+    void SwitchToWalk()
+    {
+        isSwimming = false;
+        rigidbody2D.gravityScale = normalGravity;
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -30,7 +44,6 @@ public class PlayerControl : MonoBehaviour {
 
             //sets max velocity
             rigidbody2D.velocity = Vector2.ClampMagnitude(rigidbody2D.velocity, swimMaxSpeed);
-            rigidbody2D.gravityScale = swimGravity;
 
             if (Input.GetKey(KeyCode.LeftArrow))
             {
@@ -50,7 +63,6 @@ public class PlayerControl : MonoBehaviour {
 
             //sets max velocity
             rigidbody2D.velocity = Vector2.ClampMagnitude(rigidbody2D.velocity, maxSpeed);
-            rigidbody2D.gravityScale = normalGravity;
 
             if (Input.GetKey(KeyCode.LeftArrow))
             {
