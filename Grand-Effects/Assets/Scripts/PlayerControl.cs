@@ -3,6 +3,9 @@ using System.Collections;
 
 public class PlayerControl : MonoBehaviour {
 
+    //animator variables
+    bool facingRight = true;
+
     public float pushForce = 5.0f;
     public float jumpForce = 10.0f;
     public float normalGravity = 9.81f;
@@ -20,7 +23,7 @@ public class PlayerControl : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
         if (isSwimming)
         {
