@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Water_Puddle : MonoBehaviour {
+public class Water_level_cap : MonoBehaviour {
 
-   
-    public Water_flow flow;
 	// Use this for initialization
 	void Start () {
 	
@@ -14,9 +12,4 @@ public class Water_Puddle : MonoBehaviour {
 	void Update () {
 	
 	}
-
-    void OnTriggerEnter2D(Collider2D other) {
-        flow.puddle_touch = true;
-
-    }
 }
