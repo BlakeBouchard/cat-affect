@@ -6,6 +6,7 @@ public class PlayerControl : MonoBehaviour {
     //animator variables
     //refrence for movement and animating: http://www.youtube.com/watch?v=Xnyb2f6Qqzg
     bool facingRight = true;
+    Animator anim;
 
     public float pushForce = 5.0f;
     public float jumpForce = 10.0f;
@@ -21,8 +22,13 @@ public class PlayerControl : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        //Animation Stuff
+        anim = GetComponent<Animator>();
+
         normalGravity = rigidbody2D.gravityScale;
         SwitchToSwim();
+
+
 	}
 
     void SwitchToSwim()
@@ -51,6 +57,7 @@ public class PlayerControl : MonoBehaviour {
 
 
         float move = Input.GetAxis("Horizontal");
+        anim.SetFloat("Speed", Mathf.Abs(move));
 
         if (isSwimming)
         {
@@ -73,7 +80,6 @@ public class PlayerControl : MonoBehaviour {
         }
         else
         {
-
             //sets max velocity
             rigidbody2D.velocity = Vector2.ClampMagnitude(rigidbody2D.velocity, maxSpeed);
 
@@ -95,7 +101,6 @@ public class PlayerControl : MonoBehaviour {
         //direction flipper
         if (move > 0 &&!facingRight)
         {
-            
             Flip();
         }
         else if (move < 0 && facingRight)
