@@ -7,6 +7,7 @@ public class PlayerControl : MonoBehaviour {
     //refrence for movement and animating: http://www.youtube.com/watch?v=Xnyb2f6Qqzg
     bool facingRight = true;
     Animator anim;
+    float lockPos = 0;
 
     public float pushForce = 5.0f;
     public float jumpForce = 10.0f;
@@ -55,6 +56,7 @@ public class PlayerControl : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, lockPos, lockPos);
 
         float move = Input.GetAxis("Horizontal");
         anim.SetFloat("Speed", Mathf.Abs(move));
