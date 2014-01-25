@@ -84,7 +84,7 @@ GameObject:
   - 4: {fileID: 14181653}
   - 212: {fileID: 14181652}
   m_Layer: 0
-  m_Name: natural-green
+  m_Name: Green Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,7 +134,7 @@ GameObject:
   - 4: {fileID: 31911238}
   - 212: {fileID: 31911237}
   m_Layer: 0
-  m_Name: border
+  m_Name: Border Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,7 +185,7 @@ GameObject:
   - 212: {fileID: 198574290}
   - 61: {fileID: 198574289}
   m_Layer: 0
-  m_Name: orangePlatform
+  m_Name: Top Left Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -327,7 +327,7 @@ GameObject:
   - 61: {fileID: 591431914}
   - 114: {fileID: 591431913}
   m_Layer: 0
-  m_Name: WorldBorderLeft
+  m_Name: WorldBorder Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -439,7 +439,7 @@ GameObject:
   - 212: {fileID: 1139996436}
   - 61: {fileID: 1139996435}
   m_Layer: 0
-  m_Name: orangePlatform
+  m_Name: Bottom Right Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -501,7 +501,7 @@ GameObject:
   - 61: {fileID: 1271063800}
   - 114: {fileID: 1271063799}
   m_Layer: 0
-  m_Name: WorldBorderTop
+  m_Name: WorldBorder Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -551,7 +551,7 @@ GameObject:
   - 61: {fileID: 1353502381}
   - 114: {fileID: 1353502380}
   m_Layer: 0
-  m_Name: WorldBorderRight
+  m_Name: WorldBorder Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -601,7 +601,7 @@ GameObject:
   - 61: {fileID: 2025296257}
   - 114: {fileID: 2025296259}
   m_Layer: 0
-  m_Name: WorldBorderBottom
+  m_Name: WorldBorder Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -653,7 +653,7 @@ GameObject:
   - 50: {fileID: 2037632760}
   - 58: {fileID: 2037632759}
   m_Layer: 0
-  m_Name: purpleEgg
+  m_Name: Purple Egg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
