@@ -101,17 +101,17 @@ public class PlayerControl : MonoBehaviour {
         //flight detector
         if (isFlying == 1)
         {
-            anim.SetBool("floatingUp", true);
+            //anim.SetBool("floatingUp", true);
 
         }
         else if (isFlying == -1)
         {
-            anim.SetBool("floatingDown", true);
+            //anim.SetBool("floatingDown", true);
         }
         else
         {
-            anim.SetBool("floatingUp", false);
-            anim.SetBool("floatingDown", false);
+            //anim.SetBool("floatingUp", false);
+            //anim.SetBool("floatingDown", false);
         }
 
         if (isSwimming)

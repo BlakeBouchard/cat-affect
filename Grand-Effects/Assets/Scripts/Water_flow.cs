@@ -16,11 +16,12 @@ public class Water_flow : MonoBehaviour {
     public bool level_water_cap = true;
 
     public PlayerControl player;
+    private bool in_water;
 	
     // Use this for initialization
 	
     void Start () {
-	
+        
 	}
 
     void OnTriggerEnter2D(Collider2D other)
@@ -28,7 +29,7 @@ public class Water_flow : MonoBehaviour {
         if (other.gameObject.name == "Kitty")
         {
             player.SwitchToSwim();
-        
+            in_water = true;
             out_of_water_time = 0.0F;
         }
     }
@@ -37,18 +38,27 @@ public class Water_flow : MonoBehaviour {
         if (other.gameObject.name == "Kitty")
         {
             player.SwitchToWalk();
+            in_water = false;
             out_of_water_time = Time.time;
         }
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if ((Time.time - out_of_water_time) >= 10)
+        if(transform.position.y >= 0)
         {
-            // puddle_touch = false;
-            transform.position -= new Vector3(0, y, 0);
+        level_water_cap = false;
         }
-
+        /*
+        if (!in_water)
+        {
+            if ((Time.time - out_of_water_time) >= 10)
+            {
+                puddle_touch = false;
+                transform.position -= new Vector3(0, y, 0);
+            }
+        }
+        */
         if (puddle_touch)
         {
             //Debug.Log(Time.time);
@@ -70,7 +80,7 @@ public class Water_flow : MonoBehaviour {
 
                 if (level_water_cap)
                 {
-                    Debug.Log("level_water_cap");
+                    //Debug.Log("level_water_cap");
                     transform.position += new Vector3(0, y, 0);
                 }
             }        

@@ -11,13 +11,15 @@ public class Water_cap_level : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        
 	}
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("level_water_cap on trigger");
         if (other.gameObject.name == "water")
         {
+            Debug.Log("level cap set to false");
             water_flow.level_water_cap = false;
         }
     }
