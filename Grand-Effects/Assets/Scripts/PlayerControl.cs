@@ -100,7 +100,7 @@ public class PlayerControl : MonoBehaviour
 
         //connects animator variables from animator controller
         anim.SetFloat("Speed", Mathf.Abs(move));
-        
+        anim.SetBool("isSwimming", isSwimming);
 
         int isFlying = detectFlying();
 
