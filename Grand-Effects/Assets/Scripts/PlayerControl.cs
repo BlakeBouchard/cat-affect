@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerControl : MonoBehaviour {
+public class PlayerControl : MonoBehaviour
+{
 
     //animator variables
     //refrence for movement and animating: http://www.youtube.com/watch?v=Xnyb2f6Qqzg
     bool facingRight = true;
     Animator anim;
+
     float lockPos = 0;
-    
+
 
     public float pushForce = 5.0f;
     public float jumpForce = 10.0f;
@@ -21,17 +23,17 @@ public class PlayerControl : MonoBehaviour {
     public float swimGravity = 0.3f;
     public float swimMaxSpeed = 4.0f;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
         //Animation Stuff
         anim = GetComponent<Animator>();
 
+
         normalGravity = rigidbody2D.gravityScale;
         SwitchToSwim();
 
-
-	}
+    }
 
     public void SwitchToSwim()
     {
@@ -53,18 +55,22 @@ public class PlayerControl : MonoBehaviour {
         transform.localScale = theScale;
     }
 
-    
     bool detectGrounded()
     {
-        
-        //NYI
-        return false;
+
+        if (rigidbody2D.velocity.y == 0 && rigidbody2D.velocity.x == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     // 1 is flying, 0 is neither, -1 is falling
     int detectFlying()
     {
-
         //todo, fix hard coding?
 
         if (rigidbody2D.velocity.y > 1.0)
@@ -81,12 +87,11 @@ public class PlayerControl : MonoBehaviour {
         {
             return 0;
         }
-
     }
-     
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
 
         //kitty rotation lock
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, lockPos, lockPos);
@@ -101,17 +106,28 @@ public class PlayerControl : MonoBehaviour {
         //flight detector
         if (isFlying == 1)
         {
-            //anim.SetBool("floatingUp", true);
+            anim.SetBool("floatingUp", true);
 
         }
         else if (isFlying == -1)
         {
-            //anim.SetBool("floatingDown", true);
+            anim.SetBool("floatingDown", true);
         }
         else
         {
-            //anim.SetBool("floatingUp", false);
-            //anim.SetBool("floatingDown", false);
+            anim.SetBool("floatingUp", false);
+            anim.SetBool("floatingDown", false);
+        }
+
+        bool isGrounded = detectGrounded();
+
+        if (isGrounded)
+        {
+            anim.SetBool("isGrounded", true);
+        }
+        else
+        {
+            anim.SetBool("isGrounded", false);
         }
 
         if (isSwimming)
@@ -152,9 +168,9 @@ public class PlayerControl : MonoBehaviour {
             }
         }
 
-       
+
         //direction flipper
-        if (move > 0 &&!facingRight)
+        if (move > 0 && !facingRight)
         {
             Flip();
         }
@@ -163,5 +179,5 @@ public class PlayerControl : MonoBehaviour {
             Flip();
         }
 
-	}
+    }
 }
