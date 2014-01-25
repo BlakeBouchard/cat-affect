@@ -23,7 +23,7 @@ public class PlayerControl : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rigidbody2D.velocity = new Vector2(0, jumpForce);
+            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
         }
 	}
 }
