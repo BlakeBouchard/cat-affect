@@ -31,7 +31,7 @@ public class PlayerControl : MonoBehaviour
 
 
         normalGravity = rigidbody2D.gravityScale;
-        SwitchToSwim();
+        //SwitchToSwim();
 
     }
 
@@ -58,7 +58,7 @@ public class PlayerControl : MonoBehaviour
     bool detectGrounded()
     {
 
-        if (rigidbody2D.velocity.y == 0 && rigidbody2D.velocity.x == 0)
+        if ((rigidbody2D.velocity.y < 0.5 && rigidbody2D.velocity.y > -0.5))
         {
             return true;
         }
@@ -100,6 +100,7 @@ public class PlayerControl : MonoBehaviour
 
         //connects animator variables from animator controller
         anim.SetFloat("Speed", Mathf.Abs(move));
+        
 
         int isFlying = detectFlying();
 
@@ -117,13 +118,16 @@ public class PlayerControl : MonoBehaviour
         {
             anim.SetBool("floatingUp", false);
             anim.SetBool("floatingDown", false);
+            
         }
 
         bool isGrounded = detectGrounded();
 
         if (isGrounded)
         {
+            //anim.SetBool("jump", false);
             anim.SetBool("isGrounded", true);
+            
         }
         else
         {
@@ -147,6 +151,7 @@ public class PlayerControl : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, swimJumpForce);
+                anim.SetBool("jump", true);
             }
         }
         else
@@ -164,8 +169,18 @@ public class PlayerControl : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                anim.SetBool("jump", true);
+                
+                //rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
+            }
+
+            if (Input.GetKeyUp(KeyCode.Space) && isGrounded)
+            {
+                anim.SetBool("jump", false);
+
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
             }
+
         }
 
 
