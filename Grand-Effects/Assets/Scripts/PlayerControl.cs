@@ -58,7 +58,7 @@ public class PlayerControl : MonoBehaviour
     bool detectGrounded()
     {
 
-        if ((rigidbody2D.velocity.y < 0.5 && rigidbody2D.velocity.y > -0.5))
+        if ((rigidbody2D.velocity.y < 0.0001 && rigidbody2D.velocity.y > -0.0001))
         {
             return true;
         }
