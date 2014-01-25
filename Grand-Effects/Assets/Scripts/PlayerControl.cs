@@ -21,7 +21,7 @@ public class PlayerControl : MonoBehaviour {
         {
             rigidbody2D.AddForce(new Vector2(pushForce, 0));
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && rigidbody2D.velocity.y == 0)
         {
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
         }
