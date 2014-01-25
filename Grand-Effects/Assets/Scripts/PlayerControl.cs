@@ -56,9 +56,12 @@ public class PlayerControl : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
+        //kitty rotation lock
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, lockPos, lockPos);
 
         float move = Input.GetAxis("Horizontal");
+
+        //connects speed to animator controller
         anim.SetFloat("Speed", Mathf.Abs(move));
 
         if (isSwimming)
