@@ -8,6 +8,7 @@ public class PlayerControl : MonoBehaviour {
     bool facingRight = true;
     Animator anim;
     float lockPos = 0;
+    
 
     public float pushForce = 5.0f;
     public float jumpForce = 10.0f;
@@ -32,13 +33,13 @@ public class PlayerControl : MonoBehaviour {
 
 	}
 
-    void SwitchToSwim()
+    public void SwitchToSwim()
     {
         isSwimming = true;
         rigidbody2D.gravityScale = swimGravity;
     }
 
-    void SwitchToWalk()
+    public void SwitchToWalk()
     {
         isSwimming = false;
         rigidbody2D.gravityScale = normalGravity;
@@ -50,8 +51,39 @@ public class PlayerControl : MonoBehaviour {
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
-        
     }
+
+    
+    bool detectGrounded()
+    {
+        
+        //NYI
+        return false;
+    }
+
+    // 1 is flying, 0 is neither, -1 is falling
+    int detectFlying()
+    {
+
+        //todo, fix hard coding?
+
+        if (rigidbody2D.velocity.y > 1.0)
+        {
+            return 1;
+        }
+
+        else if (rigidbody2D.velocity.y < -1.0)
+        {
+            return -1;
+        }
+
+        else
+        {
+            return 0;
+        }
+
+    }
+     
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -61,8 +93,26 @@ public class PlayerControl : MonoBehaviour {
 
         float move = Input.GetAxis("Horizontal");
 
-        //connects speed to animator controller
+        //connects animator variables from animator controller
         anim.SetFloat("Speed", Mathf.Abs(move));
+
+        int isFlying = detectFlying();
+
+        //flight detector
+        if (isFlying == 1)
+        {
+            anim.SetBool("floatingUp", true);
+
+        }
+        else if (isFlying == -1)
+        {
+            anim.SetBool("floatingDown", true);
+        }
+        else
+        {
+            anim.SetBool("floatingUp", false);
+            anim.SetBool("floatingDown", false);
+        }
 
         if (isSwimming)
         {
