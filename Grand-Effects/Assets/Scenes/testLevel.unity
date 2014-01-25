@@ -451,7 +451,7 @@ GameObject:
   - 61: {fileID: 1271063800}
   - 114: {fileID: 1271063799}
   m_Layer: 0
-  m_Name: WorldBorderBottom
+  m_Name: WorldBorderTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
