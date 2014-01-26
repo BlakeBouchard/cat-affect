@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushForce: 5
   jumpForce: 10
-  normalGravity: 9.81000042
+  normalGravity: 1
   maxSpeed: 20
   isSwimming: 1
   swimForce: 2

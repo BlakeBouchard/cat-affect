@@ -19,6 +19,7 @@ public class FireBehaviour : MonoBehaviour {
     {
         if (collider.gameObject.name == "Kitty")
         {
+            //PlayerControl playerControl = collider.GetComponent<PlayerControl>();
             Debug.Log("YOU KILLED THE KITTY");
             audio.Play();
         }
