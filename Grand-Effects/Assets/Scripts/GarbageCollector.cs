@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GarbageCollector : MonoBehaviour {
 
+    
 	// Use this for initialization
 	void Start () {
 	
@@ -15,7 +16,14 @@ public class GarbageCollector : MonoBehaviour {
 
     // Destroy something as it enters the world boundary
     void OnTriggerEnter2D(Collider2D collider) {
-        Debug.Log("Killed something called: " + collider.gameObject.name);
-        Destroy(collider);
+        if (collider.gameObject.name == "wood_platform1")
+        {
+
+        }
+        else
+        {
+            Debug.Log("Killed something called: " + collider.gameObject.name);
+            Destroy(collider);
+        }
     }
 }
