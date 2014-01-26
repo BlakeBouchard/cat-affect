@@ -1,20 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraOverlays : MonoBehaviour {
+public class GameScreens : MonoBehaviour {
 
     bool isPaused = false;
     GameObject greenBackground;
     //GameObject wetBackground;
     //GameObject desertBackground;
-    GameObject levelComplete;
-
-
+    GameObject levelCompleteScreen;
 
 	// Use this for initialization
 	void Start () {
         greenBackground = GameObject.Find("Green Background");
-        levelComplete = GameObject.Find("Level Complete");
+        levelCompleteScreen = GameObject.Find("Level Complete");
 	}
 
     public void PauseGame()
@@ -45,4 +43,11 @@ public class CameraOverlays : MonoBehaviour {
         }
 
 	}
+
+    internal void levelComplete()
+    {
+		Debug.Log ("Level Complete!");
+		levelCompleteScreen.transform.localScale = new Vector3(1, 1, 1);
+        //PauseGame();
+    }
 }
