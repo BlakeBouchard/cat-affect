@@ -8,20 +8,28 @@ public class PlayerControl : MonoBehaviour
     //refrence for movement and animating: http://www.youtube.com/watch?v=Xnyb2f6Qqzg
     bool facingRight = true;
     Animator anim;
+    public Transform groundCheck;
+    bool isGrounded = false;
+    float groundRadius = 0.2f;
+    public LayerMask whatIsGround;
+
 
     float lockPos = 0;
 
 
     public float pushForce = 10.0f;
-    public float jumpForce = 20.0f;
+    public float jumpForce = 700.0f;
     public float normalGravity;
-    public float maxSpeed = 20.0f;
+    public float maxSpeed = 10f;
 
     public bool isSwimming = false;
     public float swimForce = 5.0f;
     public float swimJumpForce = 10.0f;
     public float swimGravity = 0.3f;
     public float swimMaxSpeed = 4.0f;
+
+    //For swimming sound; added by Rebeca.
+    private float swimSoundTimer;
 
     // Use this for initialization
     void Start()
@@ -31,7 +39,9 @@ public class PlayerControl : MonoBehaviour
 
 
         normalGravity = rigidbody2D.gravityScale;
-        //SwitchToSwim();
+        SwitchToWalk();
+
+        swimSoundTimer = Time.time;
 
     }
 
@@ -57,89 +67,87 @@ public class PlayerControl : MonoBehaviour
         transform.localScale = theScale;
     }
 
-    bool detectGrounded()
-    {
-
-        if ((rigidbody2D.velocity.y < 0.0001 && rigidbody2D.velocity.y > -0.0001))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    // 1 is flying, 0 is neither, -1 is falling
-    int detectFlying()
-    {
-        //todo, fix hard coding?
-
-        if (rigidbody2D.velocity.y > 1.0)
-        {
-            return 1;
-        }
-
-        else if (rigidbody2D.velocity.y < -1.0)
-        {
-            return -1;
-        }
-
-        else
-        {
-            return 0;
-        }
-    }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+
+        anim.SetBool("isGrounded", isGrounded);
+
+        anim.SetFloat("vSpeed", rigidbody2D.velocity.y);
 
         //kitty rotation lock
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, lockPos, lockPos);
 
         float move = Input.GetAxis("Horizontal");
 
+        rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
+
         //connects animator variables from animator controller
         anim.SetFloat("Speed", Mathf.Abs(move));
         
+ 
 
-        int isFlying = detectFlying();
-
-        //flight detector
-        if (isFlying == 1)
+        //direction flipper
+        if (move > 0 && !facingRight)
         {
-            anim.SetBool("floatingUp", true);
-
+            Flip();
         }
-        else if (isFlying == -1)
+        else if (move < 0 && facingRight)
         {
-            anim.SetBool("floatingDown", true);
-        }
-        else
-        {
-            anim.SetBool("floatingUp", false);
-            anim.SetBool("floatingDown", false);
-            
+            Flip();
         }
 
-        bool isGrounded = detectGrounded();
+    }
 
-        if (isGrounded)
+    void Update()
+    {
+        //Gather all sounds associated with the Kitty, to play later. Added by Rebeca.
+        AudioSource[] kittySounds = gameObject.GetComponents<AudioSource>();
+
+        AudioSource jumpSound = null;
+        AudioSource[] splashSounds = new AudioSource[4];
+        int i = 0;
+
+        foreach (AudioSource sound in kittySounds)
         {
-            //anim.SetBool("jump", false);
-            anim.SetBool("isGrounded", true);
-            
+
+            //Assign the jump sound and splash sounds.
+            if (sound != null && sound.clip != null && sound.clip.name == "cat_jump")
+            {
+                jumpSound = sound;
+            }
+            else if (i < 4 && sound.clip != null && sound.clip.name.Contains("splash_"))
+            {
+                splashSounds[i] = sound;
+                i++;
+            }
         }
-        else
-        {
-            anim.SetBool("isGrounded", false);
-        }
+
+
+        anim.SetBool("isSwimming", isSwimming);
 
         if (isSwimming)
         {
+            //Play a sound every 2 seconds if swimming.
+            if (Time.time - swimSoundTimer > 2.0f && (Mathf.Abs(Input.GetAxis("Horizontal")) > 0 || Mathf.Abs(Input.GetAxis("Vertical")) > 0))
+            {
+                int soundToPlay = Random.Range(0, 4);
+
+                if (splashSounds[soundToPlay] != null)
+                {
+                    splashSounds[soundToPlay].Play();
+                }
+
+                //Reset timer
+                swimSoundTimer = Time.time;
+            }
+
+            /*
             //Sets state to swimming
-            anim.SetBool("isSwimming", isSwimming);
+
 
             //sets max velocity
             rigidbody2D.velocity = Vector2.ClampMagnitude(rigidbody2D.velocity, swimMaxSpeed);
@@ -157,51 +165,28 @@ public class PlayerControl : MonoBehaviour
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, swimJumpForce);
                 anim.SetBool("jump", true);
             }
+             */
+
         }
+
+        /*
+        //else not in water
         else
         {
-
-            //sets state
-            anim.SetBool("isSwimming", isSwimming);
-
-            //sets max velocity
-            rigidbody2D.velocity = Vector2.ClampMagnitude(rigidbody2D.velocity, maxSpeed);
-
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                rigidbody2D.AddForce(new Vector2(-pushForce, 0));
-            }
-            else if (Input.GetKey(KeyCode.RightArrow))
-            {
-                rigidbody2D.AddForce(new Vector2(pushForce, 0));
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-            {
-                //anim.SetBool("jump", true);
-                
-                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
-            }
-
-            //if (Input.GetKeyUp(KeyCode.Space) && isGrounded)
-            //{
-            //   anim.SetBool("jump", false);
-
-                //rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
-            //}
-
-        }
-
-
-        //direction flipper
-        if (move > 0 && !facingRight)
+         */
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
-            Flip();
-        }
-        else if (move < 0 && facingRight)
-        {
-            Flip();
-        }
 
+            anim.SetBool("isGrounded", false);
+            rigidbody2D.AddForce(new Vector2(0, jumpForce));
+
+            //Play Jumping sound. Added by Rebeca.
+            if (jumpSound != null)
+            {
+                jumpSound.Play();
+            }
+        }
+        //}
     }
+
 }

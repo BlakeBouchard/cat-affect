@@ -14,7 +14,7 @@ public class Musics : MonoBehaviour {
         waterObject = GameObject.Find("water");
 
         waterMin = waterObject.transform.position.y;
-        waterMax = GameObject.Find("purpleEgg").transform.position.y;
+        waterMax = GameObject.Find("pipe").transform.position.y;
 
         AudioSource[] allMusic = gameObject.GetComponents<AudioSource>();
 
