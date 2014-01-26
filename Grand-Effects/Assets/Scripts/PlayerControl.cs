@@ -21,6 +21,7 @@ public class PlayerControl : MonoBehaviour
     public float jumpForce = 700.0f;
     public float normalGravity;
     public float maxSpeed = 10f;
+    public float maxJump = 10f;
 
     public bool isSwimming = false;
     public float swimForce = 5.0f;
@@ -145,12 +146,17 @@ public class PlayerControl : MonoBehaviour
                 swimSoundTimer = Time.time;
             }
 
-            if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
 
                 
                 anim.SetBool("isGrounded", false);
-                rigidbody2D.AddForce(new Vector2(0, swimJumpForce));
+
+                if (rigidbody2D.velocity.y < maxJump)
+                {
+                    rigidbody2D.AddForce(new Vector2(0, swimJumpForce));
+                }
+                //maxJump
 
                 //Play Jumping sound. Added by Rebeca.
                 if (jumpSound != null)
