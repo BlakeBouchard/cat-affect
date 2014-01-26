@@ -28,6 +28,9 @@ public class PlayerControl : MonoBehaviour
     public float swimGravity = 0.3f;
     public float swimMaxSpeed = 4.0f;
 
+    //For swimming sound; added by Rebeca.
+    private float swimSoundTimer = Time.time;
+
     // Use this for initialization
     void Start()
     {
@@ -99,11 +102,48 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
+        //Gather all sounds associated with the Kitty, to play later. Added by Rebeca.
+        AudioSource[] kittySounds = gameObject.GetComponents<AudioSource>();
+
+        AudioSource jumpSound = null;
+        AudioSource[] splashSounds = new AudioSource[4];
+        int i = 0;
+
+        foreach (AudioSource sound in kittySounds)
+        {
+
+            //Assign the jump sound and splash sounds.
+            if (sound != null && sound.clip != null && sound.clip.name == "cat_jump")
+            {
+                jumpSound = sound;
+            }
+            else if (i < 4 && sound.clip != null && sound.clip.name.Contains("splash_"))
+            {
+                splashSounds[i] = sound;
+                i++;
+            }
+        }
+
+
         anim.SetBool("isSwimming", isSwimming);
 
-        /*
         if (isSwimming)
         {
+            //Play a sound every 2 seconds if swimming.
+            if (Time.time - swimSoundTimer > 2.0f && (Mathf.Abs(Input.GetAxis("Horizontal")) > 0 || Mathf.Abs(Input.GetAxis("Vertical")) > 0))
+            {
+                int soundToPlay = Random.Range(0, 4);
+
+                if (splashSounds[soundToPlay] != null)
+                {
+                    splashSounds[soundToPlay].Play();
+                }
+
+                //Reset timer
+                swimSoundTimer = Time.time;
+            }
+
+            /*
             //Sets state to swimming
 
 
@@ -123,19 +163,27 @@ public class PlayerControl : MonoBehaviour
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, swimJumpForce);
                 anim.SetBool("jump", true);
             }
-        }
-         
+             */
 
+        }
+
+        /*
         //else not in water
         else
         {
          */
-            if (isGrounded && Input.GetKeyDown(KeyCode.Space))
-            {
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
 
-                anim.SetBool("isGrounded", false);
-                rigidbody2D.AddForce(new Vector2(0, jumpForce));
+            anim.SetBool("isGrounded", false);
+            rigidbody2D.AddForce(new Vector2(0, jumpForce));
+
+            //Play Jumping sound. Added by Rebeca.
+            if (jumpSound != null)
+            {
+                jumpSound.Play();
             }
+        }
         //}
     }
 
