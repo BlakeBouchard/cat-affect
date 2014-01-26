@@ -52,7 +52,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - m_Motion: {fileID: 7400000, guid: 7349b8145d4073548b835fc635fc59b5, type: 2}
-    m_Threshold: -15
+    m_Threshold: -12
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -73,14 +73,7 @@ BlendTree:
     m_IsAnim: 1
     m_Mirror: 0
   - m_Motion: {fileID: 7400000, guid: 73465046b3cc72643831df89228cbcce, type: 2}
-    m_Threshold: 15
-    m_Position: {x: 0, y: 0}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_IsAnim: 1
-    m_Mirror: 0
-  - m_Motion: {fileID: 7400000, guid: 2190f3219a706f04b92634649de05297, type: 2}
-    m_Threshold: 15
+    m_Threshold: 2
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -88,8 +81,8 @@ BlendTree:
     m_Mirror: 0
   m_BlendParameter: vSpeed
   m_BlendParameterY: Speed
-  m_MinThreshold: -15
-  m_MaxThreshold: 15
+  m_MinThreshold: -12
+  m_MaxThreshold: 2
   m_UseAutomaticThresholds: 0
   m_BlendType: 0
 --- !u!1101 &110100000
@@ -177,6 +170,10 @@ Transition:
   m_Conditions:
   - m_ConditionMode: 2
     m_ConditionEvent: isGrounded
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
+  - m_ConditionMode: 2
+    m_ConditionEvent: isSwimming
     m_EventTreshold: 0
     m_ExitTime: .899999976
   m_Atomic: 1

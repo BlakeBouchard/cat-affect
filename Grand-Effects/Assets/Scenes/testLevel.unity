@@ -444,6 +444,7 @@ MonoBehaviour:
   jumpForce: 700
   normalGravity: 9.81000042
   maxSpeed: 20
+  maxJump: 10
   isSwimming: 0
   swimForce: 2
   swimJumpForce: 2
