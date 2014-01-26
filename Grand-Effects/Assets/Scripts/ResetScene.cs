@@ -1,21 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TitleButton : MonoBehaviour {
+public class ResetScene : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
 	
 	}
 
-    void OnMouseDown()
+    void OnMouseClick()
     {
-        Debug.Log("Start Game");
-        Application.LoadLevel(Application.loadedLevel + 1);
+        Application.LoadLevel(Application.loadedLevel);
     }
-
+	
 	// Update is called once per frame
 	void Update () {
-        
+	
 	}
 }
