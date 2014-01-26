@@ -133,6 +133,18 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
+        // Escape to quit
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
+        // R to restart
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
+
         //Gather all sounds associated with the Kitty, to play later. Added by Rebeca.
         AudioSource[] kittySounds = gameObject.GetComponents<AudioSource>();
 
