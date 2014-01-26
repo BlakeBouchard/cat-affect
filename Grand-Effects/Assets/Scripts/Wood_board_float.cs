@@ -16,14 +16,16 @@ public class Wood_board_float : MonoBehaviour {
     private int check;
     public int check2;
     private bool check3 = true;
-    private bool down = false;
+    public bool down = false;
     private bool checkw = false;
+    public Water_cap_level water_cap;
 	// Use this for initialization
 	void Start () {
         //planky_move = transform.position.y;
         wood_cap = transform.position.y - 2.5;
         flow = GameObject.Find("water").GetComponent<Water_flow>();
         world_bot_pos = GameObject.Find("WorldBorder Bottom").GetComponent<World_bot_pos>();
+        water_cap = GameObject.Find("pipe").GetComponent<Water_cap_level>();
         check = 0;
 	}
 
@@ -162,14 +164,17 @@ public class Wood_board_float : MonoBehaviour {
                 //transform.position.y = flow.transform.position.y + planky_move.y; // new Vector3(0, 2.65, 0);
             }
         }
-            if (check == 2)
+            if ((check == 2) || (water_cap.cap <= transform.position.y))
             {
-                if ((flow.transform.position.y < transform.position.y) && ((water_level.y + -2.22) < transform.position.y) && (check2 == 1) && (check3))
+                
+
+                if ((flow.transform.position.y < transform.position.y) && ((water_level.y + -2.22) < transform.position.y) &&  (check3) && (flow.level_water_cap))
                 {
+                    //Debug.Log("level_water_cap");
                     if (Time.time > water)
                     {
                         water = Time.time + water_rate;
-
+                        
                         //Debug.Log("level_water_cap");
                         transform.position -= new Vector3(0, y, 0);
                         down = true;
