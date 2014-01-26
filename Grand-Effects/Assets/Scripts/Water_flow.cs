@@ -74,8 +74,10 @@ public class Water_flow : MonoBehaviour {
         if(transform.position.y >= water_cap.cap)
         {
         level_water_cap = false;
-        wood.check2 = 0;
+        //wood.check2 = 0;
         wood2.check5 = 0;
+        wood.down = false;
+            
         }
         
         if ((!in_water) &&(!puddle_touch))
@@ -122,6 +124,7 @@ public class Water_flow : MonoBehaviour {
                         level_water_cap = true;
                         wood.check2 = 1;
                         wood2.check5 = 1;
+                        wood.down = true;
 
                     
                     }
