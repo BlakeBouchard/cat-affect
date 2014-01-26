@@ -6,6 +6,7 @@ public class Musics : MonoBehaviour {
     private float waterMin;
     private float waterMax;
     private AudioSource waterMusic;
+    private AudioSource fireMusic;
     GameObject waterObject;
 
 	// Use this for initialization
@@ -24,6 +25,11 @@ public class Musics : MonoBehaviour {
             {
                 waterMusic = allMusic[i];
             }
+
+            if (allMusic[i].clip.name == "fire_song")
+            {
+                fireMusic = allMusic[i];
+            }
         }
         
 
@@ -32,5 +38,18 @@ public class Musics : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         waterMusic.volume = (waterObject.transform.position.y - waterMin) / (waterMax - waterMin);
+
+        GameObject kitty = GameObject.Find("Kitty");
+        CatFire catFire = kitty.GetComponent<CatFire>();
+
+        if (catFire.isOnFire)
+        {
+            fireMusic.volume = 0.5f;
+        }
+        else
+        {
+            fireMusic.volume = 0.0f;
+        }
+
 	}
 }
