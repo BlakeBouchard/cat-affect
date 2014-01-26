@@ -41,6 +41,14 @@ TagManager:
     userID: 0
     uniqueID: 0
     locked: 0
+  - name: Background
+    userID: 3
+    uniqueID: 3004830871
+    locked: 0
+  - name: Platform
+    userID: 2
+    uniqueID: 2733423733
+    locked: 0
   - name: Character
     userID: 1
     uniqueID: 2219995403
