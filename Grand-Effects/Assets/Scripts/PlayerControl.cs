@@ -11,21 +11,23 @@ public class PlayerControl : MonoBehaviour
     public Transform groundCheck;
     bool isGrounded = false;
     float groundRadius = 0.2f;
+    //what is ground? that is the question
     public LayerMask whatIsGround;
 
 
-    float lockPos = 0;
+    private float lockPos = 0;
 
-
-    public float pushForce = 10.0f;
-    public float jumpForce = 700.0f;
-    public float normalGravity;
+    //The prefab will overwrite these
+    public float airGravy = 1.0f;
+    public float jumpForce = 400.0f;
+    public float normalGravity = 1.0f;
     public float maxSpeed = 10f;
-    public float maxJump = 10f;
+    //public float maxJump = 10f;
 
     public bool isSwimming = false;
-    public float swimForce = 5.0f;
-    public float swimJumpForce = 300.0f;
+    //public float swimForce = 2.0f;
+    public float swimGravy = 0.5f;
+    public float swimJumpForce = 100.0f;
     public float swimGravity = 0.3f;
     public float swimMaxSpeed = 4.0f;
 
@@ -84,7 +86,16 @@ public class PlayerControl : MonoBehaviour
 
         float move = Input.GetAxis("Horizontal");
 
-        rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
+        //Swimming force
+        if (isSwimming)
+        {
+            rigidbody2D.velocity = new Vector2(move * maxSpeed*swimGravy, rigidbody2D.velocity.y);
+        }
+        //NormalForce
+        else
+        {
+            rigidbody2D.velocity = new Vector2(move * maxSpeed *airGravy, rigidbody2D.velocity.y);
+        }
 
         //connects animator variables from animator controller
         anim.SetFloat("Speed", Mathf.Abs(move));
@@ -146,17 +157,17 @@ public class PlayerControl : MonoBehaviour
                 swimSoundTimer = Time.time;
             }
 
+            //swimming
             if (Input.GetKeyDown(KeyCode.Space))
             {
-
-                
+ 
                 anim.SetBool("isGrounded", false);
 
-                if (rigidbody2D.velocity.y < maxJump)
+                if (rigidbody2D.velocity.y < swimMaxSpeed)
                 {
                     rigidbody2D.AddForce(new Vector2(0, swimJumpForce));
                 }
-                //maxJump
+                
 
                 //Play Jumping sound. Added by Rebeca.
                 if (jumpSound != null)
