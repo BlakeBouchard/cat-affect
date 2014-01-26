@@ -22,18 +22,6 @@ public class TitleButton : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        /*
-        if (false && Input.GetMouseButtonDown(0))
-        {
-            Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 mousePosition = new Vector2(worldPoint.x, worldPoint.y);
-
-            if (Physics2D.OverlapPoint(mousePosition))
-            {
-                Debug.Log("Start Game");
-                Application.LoadLevel("level1");
-            }
-        }
-        */
+        
 	}
 }
