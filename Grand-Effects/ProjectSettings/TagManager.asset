@@ -13,7 +13,7 @@ TagManager:
   Builtin Layer 6: 
   Builtin Layer 7: 
   User Layer 8: Player
-  User Layer 9: 
+  User Layer 9: GUI
   User Layer 10: 
   User Layer 11: 
   User Layer 12: 
@@ -56,4 +56,8 @@ TagManager:
   - name: Water
     userID: 4
     uniqueID: 2069144831
+    locked: 0
+  - name: GUI
+    userID: 5
+    uniqueID: 740955463
     locked: 0
