@@ -24,7 +24,7 @@ public class PlayerControl : MonoBehaviour
 
     public bool isSwimming = false;
     public float swimForce = 5.0f;
-    public float swimJumpForce = 10.0f;
+    public float swimJumpForce = 300.0f;
     public float swimGravity = 0.3f;
     public float swimMaxSpeed = 4.0f;
 
@@ -145,48 +145,41 @@ public class PlayerControl : MonoBehaviour
                 swimSoundTimer = Time.time;
             }
 
-            /*
-            //Sets state to swimming
-
-
-            //sets max velocity
-            rigidbody2D.velocity = Vector2.ClampMagnitude(rigidbody2D.velocity, swimMaxSpeed);
-
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (isGrounded && Input.GetKeyDown(KeyCode.Space))
             {
-                rigidbody2D.AddForce(new Vector2(-swimForce, 0));
+
+                
+                anim.SetBool("isGrounded", false);
+                rigidbody2D.AddForce(new Vector2(0, swimJumpForce));
+
+                //Play Jumping sound. Added by Rebeca.
+                if (jumpSound != null)
+                {
+                    jumpSound.Play();
+                }
             }
-            else if (Input.GetKey(KeyCode.RightArrow))
-            {
-                rigidbody2D.AddForce(new Vector2(swimForce, 0));
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, swimJumpForce);
-                anim.SetBool("jump", true);
-            }
-             */
+            
 
         }
 
-        /*
+        
         //else not in water
         else
         {
-         */
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
-        {
+         
+          if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+          {
 
-            anim.SetBool("isGrounded", false);
-            rigidbody2D.AddForce(new Vector2(0, jumpForce));
+               anim.SetBool("isGrounded", false);
+               rigidbody2D.AddForce(new Vector2(0, jumpForce));
 
-            //Play Jumping sound. Added by Rebeca.
-            if (jumpSound != null)
-            {
-                jumpSound.Play();
-            }
+              //Play Jumping sound. Added by Rebeca.
+              if (jumpSound != null)
+              {
+                 jumpSound.Play();
+              }
+           }
         }
-        //}
     }
 
 }
