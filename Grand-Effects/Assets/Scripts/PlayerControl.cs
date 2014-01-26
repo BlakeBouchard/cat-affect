@@ -77,6 +77,12 @@ public class PlayerControl : MonoBehaviour
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 
+        //Your not grounded when your swimming
+        if (isSwimming)
+        {
+            isGrounded = false;
+        }
+
         anim.SetBool("isGrounded", isGrounded);
 
         anim.SetFloat("vSpeed", rigidbody2D.velocity.y);
@@ -143,6 +149,8 @@ public class PlayerControl : MonoBehaviour
 
         if (isSwimming)
         {
+
+
             //Play a sound every 2 seconds if swimming.
             if (Time.time - swimSoundTimer > 2.0f && (Mathf.Abs(Input.GetAxis("Horizontal")) > 0 || Mathf.Abs(Input.GetAxis("Vertical")) > 0))
             {
