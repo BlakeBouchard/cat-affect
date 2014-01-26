@@ -18,6 +18,7 @@ public class BeachBall : MonoBehaviour {
             animator.SetBool("isPopped", true);
             Debug.Log("Ball popped");
             ballIsPopped = true;
+            audio.Play();
         }
     }
 
