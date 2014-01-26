@@ -384,6 +384,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: cfb2db3511348f04d979f807d9a54563, type: 2}
+      propertyPath: jumpForce
+      value: 801.099976
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cfb2db3511348f04d979f807d9a54563, type: 2}
   m_RootGameObject: {fileID: 2072309340}
@@ -1008,9 +1012,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967039
   pushForce: 5
-  jumpForce: 0
+  jumpForce: 801.099976
   normalGravity: 9.81000042
   maxSpeed: 20
+  maxJump: 10
   isSwimming: 0
   swimForce: 2
   swimJumpForce: 2
