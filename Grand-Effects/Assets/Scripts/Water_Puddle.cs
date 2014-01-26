@@ -16,11 +16,21 @@ public class Water_Puddle : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        flow.puddle_touch = true;
+        if (other.gameObject.name == "Kitty")
+        {
+            flow.puddle_touch = true;
+            flow.out_of_water_time = 0.0F;
+            flow.up_water = 1;
+        }
+        
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        // flow.puddle_touch = false;
+        if (other.gameObject.name == "Kitty")
+        {
+            flow.puddle_touch = false;
+            flow.out_of_water_time = Time.time;
+        }
     }
 }
