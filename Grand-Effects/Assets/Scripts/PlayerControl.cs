@@ -58,6 +58,11 @@ public class PlayerControl : MonoBehaviour
     public void SwitchToWalk()
     {
         isSwimming = false;
+
+        //used to prevent kat colliding on water when he jumps out
+        isGrounded = false;
+        
+
         rigidbody2D.gravityScale = normalGravity;
         anim.SetBool("isSwimming", isSwimming);
     }
@@ -76,6 +81,12 @@ public class PlayerControl : MonoBehaviour
     {
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+
+        //if your in the air, your not grounded
+        if (!(rigidbody2D.velocity.y < 1 && rigidbody2D.velocity.y > -1))
+        {
+            isGrounded = false;
+        }
 
         //Your not grounded when your swimming
         if (isSwimming)
