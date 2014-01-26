@@ -18,6 +18,12 @@ public class Water_Puddle : MonoBehaviour {
     {
         if (other.gameObject.name == "Kitty")
         {
+            //Plays a little splash. Added by Rebeca.
+            if (flow.puddle_touch == false)
+            {
+                audio.Play();
+            }
+
             flow.puddle_touch = true;
             flow.out_of_water_time = 0.0F;
             flow.up_water = 1;
