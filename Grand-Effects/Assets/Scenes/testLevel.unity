@@ -357,7 +357,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 5dbd60d9e5489674d948f404bfe59af8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d72acdedcee2dc849a5dcce7959b8147, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &418192711
 Transform:
@@ -365,8 +365,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 418192709}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.28824711, y: 3.21351767, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 1.86918555e-07, w: 1}
+  m_LocalPosition: {x: 3.40882301, y: 2.52061415, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 1650289261}
@@ -441,10 +441,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967039
   pushForce: 5
-  jumpForce: 10
+  jumpForce: 700
   normalGravity: 9.81000042
   maxSpeed: 20
-  isSwimming: 1
+  isSwimming: 0
   swimForce: 2
   swimJumpForce: 2
   swimGravity: .300000012

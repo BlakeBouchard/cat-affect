@@ -62,39 +62,6 @@ public class PlayerControl : MonoBehaviour
         transform.localScale = theScale;
     }
 
-    bool detectGrounded()
-    {
-
-        if ((rigidbody2D.velocity.y < 0.0001 && rigidbody2D.velocity.y > -0.0001))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    // 1 is flying, 0 is neither, -1 is falling
-    int detectFlying()
-    {
-        //todo, fix hard coding?
-
-        if (rigidbody2D.velocity.y > 1.0)
-        {
-            return 1;
-        }
-
-        else if (rigidbody2D.velocity.y < -1.0)
-        {
-            return -1;
-        }
-
-        else
-        {
-            return 0;
-        }
-    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -116,26 +83,6 @@ public class PlayerControl : MonoBehaviour
         //connects animator variables from animator controller
         anim.SetFloat("Speed", Mathf.Abs(move));
         
-
-        int isFlying = detectFlying();
-
-        //flight detector
-        if (isFlying == 1)
-        {
-            anim.SetBool("floatingUp", true);
-
-        }
-        else if (isFlying == -1)
-        {
-            anim.SetBool("floatingDown", true);
-        }
-        else
-        {
-            anim.SetBool("floatingUp", false);
-            anim.SetBool("floatingDown", false);
-            
-        }
-
  
 
         //direction flipper
