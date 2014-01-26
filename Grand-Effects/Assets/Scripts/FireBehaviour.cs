@@ -31,7 +31,7 @@ public class FireBehaviour : MonoBehaviour {
 			catFire.CatNotOnFire();
 		}
 
-		if (water.GetComponent<BoxCollider2D>().size.y + water.transform.position.y >= gameObject.transform.position.y + 4)
+		if (water.GetComponent<BoxCollider2D>().size.y + water.transform.position.y >= gameObject.transform.position.y + 5)
 		{
 			renderer.enabled = false;
 			GetComponent<BoxCollider2D>().enabled = false;
