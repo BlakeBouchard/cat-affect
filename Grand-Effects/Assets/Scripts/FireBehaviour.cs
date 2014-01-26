@@ -22,7 +22,10 @@ public class FireBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-	    
+		if (kitty.GetComponent<PlayerControl>().isSwimming == true) {
+			fire.renderer.enabled = false;
+			catFire.CatNotOnFire();
+		}
 	}
 
     void OnTriggerEnter2D(Collider2D collider)

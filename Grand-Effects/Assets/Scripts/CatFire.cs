@@ -28,6 +28,11 @@ public class CatFire : MonoBehaviour {
         Debug.Log("YOU KILLED THE KITTY");
     }
 
+	public void CatNotOnFire()
+	{
+		isOnFire = false;
+	}
+
 	public void MakeCatCry()
 	{
 		if (fireTest == false) {
