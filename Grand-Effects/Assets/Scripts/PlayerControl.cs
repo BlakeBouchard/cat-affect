@@ -29,7 +29,7 @@ public class PlayerControl : MonoBehaviour
     public float swimMaxSpeed = 4.0f;
 
     //For swimming sound; added by Rebeca.
-    private float swimSoundTimer = Time.time;
+    private float swimSoundTimer;
 
     // Use this for initialization
     void Start()
@@ -40,6 +40,8 @@ public class PlayerControl : MonoBehaviour
 
         normalGravity = rigidbody2D.gravityScale;
         SwitchToWalk();
+
+        swimSoundTimer = Time.time;
 
     }
 
