@@ -386,7 +386,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: cfb2db3511348f04d979f807d9a54563, type: 2}
       propertyPath: jumpForce
-      value: 801.099976
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: cfb2db3511348f04d979f807d9a54563, type: 2}
+      propertyPath: swimJumpForce
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cfb2db3511348f04d979f807d9a54563, type: 2}
@@ -1012,13 +1016,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967039
   pushForce: 5
-  jumpForce: 801.099976
-  normalGravity: 9.81000042
-  maxSpeed: 20
+  jumpForce: 400
+  normalGravity: 1
+  maxSpeed: 10
   maxJump: 10
   isSwimming: 0
   swimForce: 2
-  swimJumpForce: 2
+  swimJumpForce: 100
   swimGravity: .300000012
   swimMaxSpeed: 4
 --- !u!95 &2072309344

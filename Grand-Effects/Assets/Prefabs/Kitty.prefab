@@ -424,12 +424,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967039
   pushForce: 5
-  jumpForce: 0
-  normalGravity: 9.81000042
-  maxSpeed: 20
+  jumpForce: 400
+  normalGravity: 1
+  maxSpeed: 10
+  maxJump: 10
   isSwimming: 0
   swimForce: 2
-  swimJumpForce: 2
+  swimJumpForce: 100
   swimGravity: .300000012
   swimMaxSpeed: 4
 --- !u!114 &11400002
