@@ -4,14 +4,18 @@ using System.Collections;
 public class FireBehaviour : MonoBehaviour {
 
     GameObject kitty;
+	GameObject fire;
     CatFire catFire;
 
-	public Transform target;
+	public Transform targetCat;
+	public Transform targetFire;
 
 	// Use this for initialization
 	void Start ()
     {
-        kitty = GameObject.Find(target.name);
+        kitty = GameObject.Find(targetCat.name);
+		fire = GameObject.Find (targetFire.name);
+
 	    catFire = kitty.GetComponent<CatFire>();
 	}
 	
@@ -29,6 +33,7 @@ public class FireBehaviour : MonoBehaviour {
 
 		if ((collider.gameObject == kitty) && !catFire.IsCatOnFire ()) {
 			catFire.LightCatOnFire ();
+			fire.renderer.enabled = true;
 		}
 	}
 	
