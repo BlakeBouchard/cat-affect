@@ -6,10 +6,12 @@ public class FireBehaviour : MonoBehaviour {
     GameObject kitty;
     CatFire catFire;
 
+	public Transform target;
+
 	// Use this for initialization
 	void Start ()
     {
-        kitty = GameObject.Find("Kitty");
+        kitty = GameObject.Find(target.name);
 	    catFire = kitty.GetComponent<CatFire>();
 	}
 	
@@ -21,9 +23,20 @@ public class FireBehaviour : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject == kitty && !catFire.IsCatOnFire())
-        {
-            catFire.LightCatOnFire();
-        }
-    }
+		if (collider.gameObject == kitty) {
+			catFire.MakeCatCry ();
+		}
+
+		if ((collider.gameObject == kitty) && !catFire.IsCatOnFire ()) {
+			catFire.LightCatOnFire ();
+		}
+	}
+	
+	void OnTriggerExit2D(Collider2D collider)
+	{
+		if (collider.gameObject == kitty)
+		{
+			catFire.resetCat();
+		}
+	}
 }
