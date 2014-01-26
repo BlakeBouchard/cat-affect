@@ -76,12 +76,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0676f405fc86a5f428b75a7de2e10e9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d1342922a5ee3a4086147be3f3a8b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   flow: {fileID: 0}
   world_bot_pos: {fileID: 0}
-  check2: 0
+  check5: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
