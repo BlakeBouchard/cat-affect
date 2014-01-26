@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: f3edb60e7f65c95449a03f06828542c4
+=======
+guid: 68c21edcf178db242a178eff224371de
+>>>>>>> fire vertical
 TextureImporter:
   serializedVersion: 2
   mipmaps:
