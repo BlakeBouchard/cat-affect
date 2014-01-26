@@ -268,7 +268,7 @@ Transform:
   m_PrefabInternal: {fileID: 228989114}
   m_GameObject: {fileID: 157644784}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.99245071, y: -3.84774756, z: 0}
+  m_LocalPosition: {x: -8.99245071, y: -3.37819076, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -335,7 +335,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ba5bd5349d3d4ab4f991701eaeff9a48, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.84774756
+      value: -3.37819076
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ba5bd5349d3d4ab4f991701eaeff9a48, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1047,13 +1047,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967039
   pushForce: 5
-  jumpForce: 0
-  normalGravity: 9.81000042
-  maxSpeed: 20
+  jumpForce: 400
+  normalGravity: 1
+  maxSpeed: 10
   maxJump: 10
   isSwimming: 0
   swimForce: 2
-  swimJumpForce: 2
+  swimJumpForce: 100
   swimGravity: .300000012
   swimMaxSpeed: 4
 --- !u!95 &394854510
@@ -1344,11 +1344,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 82cf5e2575d1f7e48b2fbc81d56046f0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 8.08651829
+      value: 8.16477776
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 82cf5e2575d1f7e48b2fbc81d56046f0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .182359874
+      value: 1.39538598
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 82cf5e2575d1f7e48b2fbc81d56046f0, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1451,7 +1451,7 @@ Transform:
   m_PrefabInternal: {fileID: 949389579}
   m_GameObject: {fileID: 1089646749}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.08651829, y: .182359874, z: 0}
+  m_LocalPosition: {x: 8.16477776, y: 1.39538598, z: 0}
   m_LocalScale: {x: .25553298, y: .255532742, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1467,6 +1467,7 @@ GameObject:
   - 95: {fileID: 1173613006}
   - 58: {fileID: 1173613005}
   - 114: {fileID: 1173613004}
+  - 82: {fileID: 1173613009}
   m_Layer: 0
   m_Name: Beach Ball
   m_TagString: Untagged
@@ -1548,6 +1549,65 @@ Transform:
   m_LocalScale: {x: .395899415, y: .395899117, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!82 &1173613009
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200000, guid: d4cdb011b30172a4eab383ff9785d437,
+    type: 2}
+  m_PrefabInternal: {fileID: 282389499}
+  m_GameObject: {fileID: 1173613003}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 991b82786d2995f4fbe9424b169e33fd, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 10
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1207499996
 GameObject:
   m_ObjectHideFlags: 0
@@ -1707,7 +1767,7 @@ Transform:
   m_PrefabInternal: {fileID: 2001602236}
   m_GameObject: {fileID: 1391024737}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.27813911, y: -3.2920332, z: 0}
+  m_LocalPosition: {x: 8.27813911, y: -3.80072093, z: 0}
   m_LocalScale: {x: .195916161, y: .195916414, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2038,7 +2098,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 82cf5e2575d1f7e48b2fbc81d56046f0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.2920332
+      value: -3.80072093
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 82cf5e2575d1f7e48b2fbc81d56046f0, type: 2}
       propertyPath: m_LocalPosition.z

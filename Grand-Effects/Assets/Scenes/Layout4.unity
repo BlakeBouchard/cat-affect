@@ -685,13 +685,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967039
   pushForce: 5
-  jumpForce: 0
-  normalGravity: 9.81000042
-  maxSpeed: 20
+  jumpForce: 400
+  normalGravity: 1
+  maxSpeed: 10
   maxJump: 10
   isSwimming: 0
   swimForce: 2
-  swimJumpForce: 2
+  swimJumpForce: 100
   swimGravity: .300000012
   swimMaxSpeed: 4
 --- !u!95 &120650188
@@ -807,7 +807,7 @@ Transform:
   m_PrefabInternal: {fileID: 1802802550}
   m_GameObject: {fileID: 165835941}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.86853409, y: 3.33949757, z: 0}
+  m_LocalPosition: {x: -8.86853409, y: 2.79167986, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -871,8 +871,8 @@ Transform:
   m_PrefabInternal: {fileID: 1161345469}
   m_GameObject: {fileID: 209977942}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.90315151, y: -.708490372, z: 0}
-  m_LocalScale: {x: .723291636, y: 1.2657609, z: .850931406}
+  m_LocalPosition: {x: -4.90314865, y: -1.88237858, z: 0}
+  m_LocalScale: {x: .574225962, y: 1.00489652, z: .850931406}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &215543500
@@ -1041,8 +1041,8 @@ Transform:
   m_PrefabInternal: {fileID: 1192814254}
   m_GameObject: {fileID: 529791956}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: -1.62920685e-07}
-  m_LocalPosition: {x: 1.26241398, y: -.275939941, z: 0}
-  m_LocalScale: {x: .70743531, y: 1.27970302, z: 1}
+  m_LocalPosition: {x: 1.26241398, y: -.667240143, z: 0}
+  m_LocalScale: {x: .659364223, y: 1.1927458, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1001 &597386750
@@ -1387,11 +1387,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 4ea0ac6a96f161147a56e148d88affb1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.90315151
+      value: -4.90314865
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4ea0ac6a96f161147a56e148d88affb1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -.708490372
+      value: -1.88237858
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4ea0ac6a96f161147a56e148d88affb1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1415,11 +1415,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4ea0ac6a96f161147a56e148d88affb1, type: 2}
       propertyPath: m_LocalScale.y
-      value: 1.2657609
+      value: 1.00489652
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4ea0ac6a96f161147a56e148d88affb1, type: 2}
       propertyPath: m_LocalScale.x
-      value: .723291636
+      value: .574225962
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4ea0ac6a96f161147a56e148d88affb1, type: 2}
       propertyPath: m_LocalScale.z
@@ -1451,7 +1451,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4ea0ac6a96f161147a56e148d88affb1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -.275939941
+      value: -.667240143
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4ea0ac6a96f161147a56e148d88affb1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1475,11 +1475,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4ea0ac6a96f161147a56e148d88affb1, type: 2}
       propertyPath: m_LocalScale.x
-      value: .70743531
+      value: .659364223
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4ea0ac6a96f161147a56e148d88affb1, type: 2}
       propertyPath: m_LocalScale.y
-      value: 1.27970302
+      value: 1.1927458
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: 4ea0ac6a96f161147a56e148d88affb1, type: 2}
       propertyPath: m_SortingLayer
@@ -1506,6 +1506,7 @@ GameObject:
   - 95: {fileID: 1235560759}
   - 58: {fileID: 1235560758}
   - 114: {fileID: 1235560757}
+  - 82: {fileID: 1235560762}
   m_Layer: 0
   m_Name: Beach Ball
   m_TagString: Untagged
@@ -1587,6 +1588,65 @@ Transform:
   m_LocalScale: {x: .375246733, y: .375246763, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!82 &1235560762
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200000, guid: d4cdb011b30172a4eab383ff9785d437,
+    type: 2}
+  m_PrefabInternal: {fileID: 1620213804}
+  m_GameObject: {fileID: 1235560756}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 991b82786d2995f4fbe9424b169e33fd, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 10
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1239955078
 GameObject:
   m_ObjectHideFlags: 0
@@ -1830,7 +1890,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ba5bd5349d3d4ab4f991701eaeff9a48, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.33949757
+      value: 2.79167986
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ba5bd5349d3d4ab4f991701eaeff9a48, type: 2}
       propertyPath: m_LocalPosition.z
