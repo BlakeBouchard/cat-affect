@@ -213,6 +213,10 @@ Prefab:
       propertyPath: jumpForce
       value: 1000.56
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: cfb2db3511348f04d979f807d9a54563, type: 2}
+      propertyPath: sound1
+      value: 
+      objectReference: {fileID: 8300000, guid: 634a6d738a83ef84eb938d350824d732, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cfb2db3511348f04d979f807d9a54563, type: 2}
   m_RootGameObject: {fileID: 237861257}
@@ -319,6 +323,7 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 307608173}
+  - {fileID: 646165657}
   m_Father: {fileID: 0}
 --- !u!114 &237861259
 MonoBehaviour:
@@ -333,6 +338,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOnFire: 0
+  fireTest: 0
+  sound1: {fileID: 8300000, guid: 634a6d738a83ef84eb938d350824d732, type: 3}
 --- !u!82 &237861260
 AudioSource:
   m_ObjectHideFlags: 0
@@ -686,13 +693,13 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4294967039
-  pushForce: 5
+  airGravy: 1
   jumpForce: 1000.56
-  normalGravity: 9.81000042
-  maxSpeed: 20
-  isSwimming: 0
-  swimForce: 2
-  swimJumpForce: 2
+  normalGravity: 1
+  maxSpeed: 10
+  isSwimming: 1
+  swimGravy: .5
+  swimJumpForce: 100
   swimGravity: .300000012
   swimMaxSpeed: 4
 --- !u!95 &237861268
@@ -880,7 +887,7 @@ Transform:
   m_PrefabInternal: {fileID: 69574721}
   m_GameObject: {fileID: 307608172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.0414040908, y: -.401664346, z: -.124868631}
+  m_LocalPosition: {x: -.0414040908, y: -.330000013, z: -.124868631}
   m_LocalScale: {x: .333333343, y: .333333343, z: .333333343}
   m_Children: []
   m_Father: {fileID: 237861258}
@@ -967,6 +974,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1f8fb2dc35fe84daaa2f53d9524afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetCat: {fileID: 237861258}
+  targetFire: {fileID: 646165657}
 --- !u!61 &542807305
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1047,7 +1056,7 @@ AudioSource:
   m_GameObject: {fileID: 542807300}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 5e5dafc79e74ffc449b18463dedd8649, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3d2174d252af6434fbd48b846f8a4038, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1055,7 +1064,7 @@ AudioSource:
   Mute: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 15
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -1187,6 +1196,86 @@ Prefab:
   m_RootGameObject: {fileID: 2046164693}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &646165656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 646165657}
+  - 212: {fileID: 646165658}
+  - 95: {fileID: 646165659}
+  - 111: {fileID: 646165660}
+  m_Layer: 0
+  m_Name: catfire1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &646165657
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 646165656}
+  m_LocalRotation: {x: 0, y: 0, z: .219215408, w: .975676537}
+  m_LocalPosition: {x: -.10699185, y: -.00594411325, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: .333333343}
+  m_Children: []
+  m_Father: {fileID: 237861258}
+--- !u!212 &646165658
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 646165656}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: 83e45326e3e30304b9a6e688e9281c88, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!95 &646165659
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 646165656}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 183655715f191114d97a0d5291038f43, type: 2}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 0
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
+--- !u!111 &646165660
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 646165656}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 1bc4635408defd14fa915ce30f608a7a, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &872206906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,6 +1324,9 @@ MonoBehaviour:
   level_water_cap: 10
   player: {fileID: 0}
   water_cap: {fileID: 0}
+  wood: {fileID: 0}
+  wood2: {fileID: 0}
+  water_level: 0
 --- !u!212 &872206909
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1766,6 +1858,22 @@ Prefab:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 5808a338b0df11648af75762fb904266, type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 237861258}
+    - target: {fileID: 8200002, guid: 5808a338b0df11648af75762fb904266, type: 2}
+      propertyPath: BypassEffects
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 5808a338b0df11648af75762fb904266, type: 2}
+      propertyPath: targetCat
+      value: 
+      objectReference: {fileID: 237861258}
+    - target: {fileID: 11400000, guid: 5808a338b0df11648af75762fb904266, type: 2}
+      propertyPath: targetFire
+      value: 
+      objectReference: {fileID: 646165657}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5808a338b0df11648af75762fb904266, type: 2}
   m_RootGameObject: {fileID: 542807300}
@@ -1872,6 +1980,7 @@ GameObject:
   - 212: {fileID: 2046164696}
   - 114: {fileID: 2046164695}
   - 61: {fileID: 2046164694}
+  - 82: {fileID: 2046164698}
   m_Layer: 0
   m_Name: Puddle
   m_TagString: Untagged
@@ -1939,6 +2048,65 @@ Transform:
   m_LocalScale: {x: .246125937, y: .246126071, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!82 &2046164698
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200000, guid: 9706fc33ea52c764ea0c3b19b0305597,
+    type: 2}
+  m_PrefabInternal: {fileID: 610578115}
+  m_GameObject: {fileID: 2046164693}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 2a21fbf02c3c0bb45a4a53f2390aac64, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 10
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1001 &2063173560
 Prefab:
   m_ObjectHideFlags: 0
