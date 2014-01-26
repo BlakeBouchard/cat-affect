@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Wood_board_float : MonoBehaviour {
 
@@ -16,6 +17,7 @@ public class Wood_board_float : MonoBehaviour {
     public int check2;
     private bool check3 = true;
     private bool down = false;
+    private bool checkw = false;
 	// Use this for initialization
 	void Start () {
         //planky_move = transform.position.y;
@@ -43,6 +45,7 @@ public class Wood_board_float : MonoBehaviour {
                 {
                     check = 1;
                 }
+                checkw = true;
             }
         
 
@@ -59,6 +62,7 @@ public class Wood_board_float : MonoBehaviour {
             {
                 check = 3;
             }
+            checkw = false;
 
         }
 
@@ -75,7 +79,7 @@ public class Wood_board_float : MonoBehaviour {
             {
                 check = 3;
             }
-
+            checkw = false;
         }
         if (other.gameObject.name == "Rock_platform3")
         {
@@ -90,6 +94,7 @@ public class Wood_board_float : MonoBehaviour {
             {
                 check = 3;
             }
+            checkw = false;
 
         }
         if (other.gameObject.name == "WorldBorder Bottom")
@@ -99,6 +104,16 @@ public class Wood_board_float : MonoBehaviour {
             planky_move = new Vector3(0, 0, 0);
             check3 = false;
             check = 0;
+        }
+        
+        if (other.gameObject.name == "WorldBorder Top")
+        {
+
+            Debug.Log("enter");
+            planky_move = new Vector3(0, 0, 0);
+            check3 = false;
+            check = 2;
+            checkw = false;
         }
         /*
         if(!(other.gameObject.name == "water"))
@@ -111,25 +126,19 @@ public class Wood_board_float : MonoBehaviour {
         //transform.position += planky_move;
     }
 
-    /*
+    
         void OnTriggerExit2D(Collider2D other)
         {
-            check += 1;
-            Debug.Log(check);
-            if (check==2)
-            {
-                Debug.Log("check");
+            
                 if (other.gameObject.name == "water")
                 {
-                    Debug.Log("in here");
-                    planky_move += new Vector3(0, -1, 0);
-                    //transform.position -= new Vector3(0, 1, 0);
+                    checkw = false;
                 }
-                transform.position += planky_move;
-            }
+            
+            
         }
     
-    */
+    
 	// Update is called once per frame
 	void Update () {
         planky_move = new Vector3(0, 0, 0);
@@ -137,7 +146,7 @@ public class Wood_board_float : MonoBehaviour {
         
             if (check == 1)
             {
-                if ((flow.transform.position.y - transform.position.y) <= 0.65F)
+                if (((Math.Pow(flow.transform.position.y, 2) - Math.Pow(transform.position.y, 2)) <= 16) && (!((Math.Pow(flow.transform.position.y, 2) - Math.Pow(transform.position.y, 2)) >= 16)) && checkw)//0.65F)
                 {
                 if (Time.time > water)
                 {

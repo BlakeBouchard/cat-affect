@@ -12,6 +12,7 @@ public class Wood_board_float_vert : MonoBehaviour
     private float water_rate = 0.5F;
     private float water = 0.0F;
     public World_bot_pos world_bot_pos;
+    public World_top_pos world_top_pos;
     Vector3 planky_move = new Vector3(0, 0, 0);
     private int check;
     public int check5;
@@ -24,6 +25,7 @@ public class Wood_board_float_vert : MonoBehaviour
         wood_cap = transform.position.y - 2.5;
         flow = GameObject.Find("water").GetComponent<Water_flow>();
         world_bot_pos = GameObject.Find("WorldBorder Bottom").GetComponent<World_bot_pos>();
+        world_top_pos = GameObject.Find("WorldBorder Top").GetComponent<World_top_pos>();
         check = 0;
     }
 
@@ -140,7 +142,7 @@ public class Wood_board_float_vert : MonoBehaviour
 
         if (check == 1)
         {
-            if ((flow.transform.position.y - transform.position.y) <= 0.65F)
+            if (((flow.transform.position.y - transform.position.y) < 0.65F) && ((flow.transform.position.y - transform.position.y) > 0.45F))
             {
                 if (Time.time > water)
                 {
