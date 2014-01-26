@@ -8,8 +8,9 @@ public class ResetScene : MonoBehaviour {
 	
 	}
 
-    void OnMouseClick()
+    void OnMouseDown()
     {
+        Debug.Log("Reload level");
         Application.LoadLevel(Application.loadedLevel);
     }
 	

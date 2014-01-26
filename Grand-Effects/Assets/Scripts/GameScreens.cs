@@ -13,6 +13,7 @@ public class GameScreens : MonoBehaviour {
 	void Start () {
         greenBackground = GameObject.Find("Green Background");
         levelCompleteScreen = GameObject.Find("Level Complete");
+        levelCompleteScreen.SetActive(false);
 	}
 
     public void PauseGame()
@@ -47,7 +48,6 @@ public class GameScreens : MonoBehaviour {
     internal void levelComplete()
     {
 		Debug.Log ("Level Complete!");
-		levelCompleteScreen.transform.localScale = new Vector3(1, 1, 1);
         //PauseGame();
     }
 }
