@@ -35,6 +35,8 @@ public class FireBehaviour : MonoBehaviour {
 		{
 			renderer.enabled = false;
 			GetComponent<BoxCollider2D>().enabled = false;
+			this.audio.Stop();
+
 			Destroy(this);
 		}
 	}
