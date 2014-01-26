@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿// Code from http://answers.unity3d.com/questions/29183/2d-camera-smooth-follow.html
+// All original code by Scott Kovacs
+
+using UnityEngine;
 using System.Collections;
 
 public class CameraFollow : MonoBehaviour {
