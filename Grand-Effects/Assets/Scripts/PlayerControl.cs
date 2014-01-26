@@ -12,14 +12,14 @@ public class PlayerControl : MonoBehaviour
     float lockPos = 0;
 
 
-    public float pushForce = 5.0f;
-    public float jumpForce = 10.0f;
+    public float pushForce = 10.0f;
+    public float jumpForce = 20.0f;
     public float normalGravity;
     public float maxSpeed = 20.0f;
 
     public bool isSwimming = false;
-    public float swimForce = 2.0f;
-    public float swimJumpForce = 2.0f;
+    public float swimForce = 5.0f;
+    public float swimJumpForce = 10.0f;
     public float swimGravity = 0.3f;
     public float swimMaxSpeed = 4.0f;
 
@@ -39,12 +39,14 @@ public class PlayerControl : MonoBehaviour
     {
         isSwimming = true;
         rigidbody2D.gravityScale = swimGravity;
+        anim.SetBool("isSwimming", isSwimming);
     }
 
     public void SwitchToWalk()
     {
         isSwimming = false;
         rigidbody2D.gravityScale = normalGravity;
+        anim.SetBool("isSwimming", isSwimming);
     }
 
     void Flip()
@@ -100,7 +102,7 @@ public class PlayerControl : MonoBehaviour
 
         //connects animator variables from animator controller
         anim.SetFloat("Speed", Mathf.Abs(move));
-        anim.SetBool("isSwimming", isSwimming);
+        
 
         int isFlying = detectFlying();
 
@@ -136,6 +138,8 @@ public class PlayerControl : MonoBehaviour
 
         if (isSwimming)
         {
+            //Sets state to swimming
+            anim.SetBool("isSwimming", isSwimming);
 
             //sets max velocity
             rigidbody2D.velocity = Vector2.ClampMagnitude(rigidbody2D.velocity, swimMaxSpeed);
@@ -156,6 +160,10 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
+
+            //sets state
+            anim.SetBool("isSwimming", isSwimming);
+
             //sets max velocity
             rigidbody2D.velocity = Vector2.ClampMagnitude(rigidbody2D.velocity, maxSpeed);
 
@@ -167,19 +175,20 @@ public class PlayerControl : MonoBehaviour
             {
                 rigidbody2D.AddForce(new Vector2(pushForce, 0));
             }
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                anim.SetBool("jump", true);
+                //anim.SetBool("jump", true);
                 
-                //rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
-            }
-
-            if (Input.GetKeyUp(KeyCode.Space) && isGrounded)
-            {
-                anim.SetBool("jump", false);
-
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
             }
+
+            //if (Input.GetKeyUp(KeyCode.Space) && isGrounded)
+            //{
+            //   anim.SetBool("jump", false);
+
+                //rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
+            //}
 
         }
 
