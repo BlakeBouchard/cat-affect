@@ -3,10 +3,14 @@ using System.Collections;
 
 public class FireBehaviour : MonoBehaviour {
 
+    GameObject kitty;
+    CatFire catFire;
+
 	// Use this for initialization
 	void Start ()
     {
-	
+        kitty = GameObject.Find("Kitty");
+	    catFire = kitty.GetComponent<CatFire>();
 	}
 	
 	// Update is called once per frame
@@ -17,11 +21,9 @@ public class FireBehaviour : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.name == "Kitty")
+        if (collider.gameObject == kitty && !catFire.IsCatOnFire())
         {
-            //PlayerControl playerControl = collider.GetComponent<PlayerControl>();
-            Debug.Log("YOU KILLED THE KITTY");
-            audio.Play();
+            catFire.LightCatOnFire();
         }
     }
 }
