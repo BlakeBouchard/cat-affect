@@ -329,7 +329,7 @@ GameObject:
   - 114: {fileID: 418192715}
   - 50: {fileID: 418192714}
   - 60: {fileID: 418192713}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Kitty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,9 +366,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 418192709}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.03788853, y: 1.73317015, z: 0}
+  m_LocalPosition: {x: -4.28824711, y: 3.21351767, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
-  m_Children: []
+  m_Children:
+  - {fileID: 1650289261}
   m_Father: {fileID: 0}
 --- !u!95 &418192712
 Animator:
@@ -435,6 +436,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df14e142823d0d944963a5690083c8b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheck: {fileID: 1650289261}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 4294967039
   pushForce: 5
   jumpForce: 10
   normalGravity: 9.81000042
@@ -718,6 +723,32 @@ Transform:
   m_LocalScale: {x: 1, y: 9.43000031, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1 &1650289260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1650289261}
+  m_Layer: 8
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 266726316, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1650289261
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1650289260}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.0414040908, y: -.401664346, z: -.124868631}
+  m_LocalScale: {x: .333333343, y: .333333343, z: .333333343}
+  m_Children: []
+  m_Father: {fileID: 418192711}
 --- !u!1 &2025296256
 GameObject:
   m_ObjectHideFlags: 0

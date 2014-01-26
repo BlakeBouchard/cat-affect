@@ -8,14 +8,19 @@ public class PlayerControl : MonoBehaviour
     //refrence for movement and animating: http://www.youtube.com/watch?v=Xnyb2f6Qqzg
     bool facingRight = true;
     Animator anim;
+    public Transform groundCheck;
+    bool isGrounded = false;
+    float groundRadius = 0.2f;
+    public LayerMask whatIsGround;
+
 
     float lockPos = 0;
 
 
     public float pushForce = 10.0f;
-    public float jumpForce = 20.0f;
+    public float jumpForce = 700.0f;
     public float normalGravity;
-    public float maxSpeed = 20.0f;
+    public float maxSpeed = 10f;
 
     public bool isSwimming = false;
     public float swimForce = 5.0f;
@@ -31,7 +36,7 @@ public class PlayerControl : MonoBehaviour
 
 
         normalGravity = rigidbody2D.gravityScale;
-        //SwitchToSwim();
+        SwitchToWalk();
 
     }
 
@@ -95,10 +100,18 @@ public class PlayerControl : MonoBehaviour
     void FixedUpdate()
     {
 
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+
+        anim.SetBool("isGrounded", isGrounded);
+
+        anim.SetFloat("vSpeed", rigidbody2D.velocity.y);
+
         //kitty rotation lock
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, lockPos, lockPos);
 
         float move = Input.GetAxis("Horizontal");
+
+        rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
 
         //connects animator variables from animator controller
         anim.SetFloat("Speed", Mathf.Abs(move));
@@ -123,23 +136,29 @@ public class PlayerControl : MonoBehaviour
             
         }
 
-        bool isGrounded = detectGrounded();
+ 
 
-        if (isGrounded)
+        //direction flipper
+        if (move > 0 && !facingRight)
         {
-            //anim.SetBool("jump", false);
-            anim.SetBool("isGrounded", true);
-            
+            Flip();
         }
-        else
+        else if (move < 0 && facingRight)
         {
-            anim.SetBool("isGrounded", false);
+            Flip();
         }
 
+    }
+
+    void Update()
+    {
+        anim.SetBool("isSwimming", isSwimming);
+
+        /*
         if (isSwimming)
         {
             //Sets state to swimming
-            anim.SetBool("isSwimming", isSwimming);
+
 
             //sets max velocity
             rigidbody2D.velocity = Vector2.ClampMagnitude(rigidbody2D.velocity, swimMaxSpeed);
@@ -158,50 +177,19 @@ public class PlayerControl : MonoBehaviour
                 anim.SetBool("jump", true);
             }
         }
+         
+
+        //else not in water
         else
         {
-
-            //sets state
-            anim.SetBool("isSwimming", isSwimming);
-
-            //sets max velocity
-            rigidbody2D.velocity = Vector2.ClampMagnitude(rigidbody2D.velocity, maxSpeed);
-
-            if (Input.GetKey(KeyCode.LeftArrow))
+         */
+            if (isGrounded && Input.GetKeyDown(KeyCode.Space))
             {
-                rigidbody2D.AddForce(new Vector2(-pushForce, 0));
+
+                anim.SetBool("isGrounded", false);
+                rigidbody2D.AddForce(new Vector2(0, jumpForce));
             }
-            else if (Input.GetKey(KeyCode.RightArrow))
-            {
-                rigidbody2D.AddForce(new Vector2(pushForce, 0));
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-            {
-                //anim.SetBool("jump", true);
-                
-                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
-            }
-
-            //if (Input.GetKeyUp(KeyCode.Space) && isGrounded)
-            //{
-            //   anim.SetBool("jump", false);
-
-                //rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
-            //}
-
-        }
-
-
-        //direction flipper
-        if (move > 0 && !facingRight)
-        {
-            Flip();
-        }
-        else if (move < 0 && facingRight)
-        {
-            Flip();
-        }
-
+        //}
     }
+
 }
