@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Wood_board_float_vert : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Wood_board_float_vert : MonoBehaviour
     public int check5;
     private bool check3 = true;
     private bool down = false;
+    private bool checkw = false;
     // Use this for initialization
     void Start()
     {
@@ -47,6 +49,7 @@ public class Wood_board_float_vert : MonoBehaviour
             {
                 check = 1;
             }
+            checkw = true;
         }
 
 
@@ -63,6 +66,7 @@ public class Wood_board_float_vert : MonoBehaviour
             {
                 check = 3;
             }
+            checkw = false;
 
         }
 
@@ -79,6 +83,7 @@ public class Wood_board_float_vert : MonoBehaviour
             {
                 check = 3;
             }
+            checkw = false;
 
         }
         if (other.gameObject.name == "Rock_platform3")
@@ -94,6 +99,7 @@ public class Wood_board_float_vert : MonoBehaviour
             {
                 check = 3;
             }
+            checkw = false;
 
         }
         if (other.gameObject.name == "WorldBorder Bottom")
@@ -103,6 +109,15 @@ public class Wood_board_float_vert : MonoBehaviour
             planky_move = new Vector3(0, 0, 0);
             check3 = false;
             check = 0;
+        }
+        if (other.gameObject.name == "WorldBorder Top")
+        {
+
+            Debug.Log("enter");
+            planky_move = new Vector3(0, 0, 0);
+            check3 = false;
+            check = 2;
+            checkw = false;
         }
         /*
         if(!(other.gameObject.name == "water"))
@@ -134,6 +149,17 @@ public class Wood_board_float_vert : MonoBehaviour
         }
     
     */
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+
+        if (other.gameObject.name == "water")
+        {
+            checkw = false;
+        }
+
+
+    }
     // Update is called once per frame
     void Update()
     {
@@ -142,7 +168,7 @@ public class Wood_board_float_vert : MonoBehaviour
 
         if (check == 1)
         {
-            if (((flow.transform.position.y - transform.position.y) < 0.65F) && ((flow.transform.position.y - transform.position.y) > 0.45F))
+            if (((Math.Pow(flow.transform.position.y, 2) - Math.Pow(transform.position.y, 2)) <= 16) && (!((Math.Pow(flow.transform.position.y, 2) - Math.Pow(transform.position.y, 2)) >= 16)) && checkw)//0.65F)
             {
                 if (Time.time > water)
                 {
