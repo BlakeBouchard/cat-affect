@@ -176,7 +176,7 @@ public class PlayerControl : MonoBehaviour
                 rigidbody2D.AddForce(new Vector2(pushForce, 0));
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
             {
                 //anim.SetBool("jump", true);
                 
