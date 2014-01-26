@@ -18,7 +18,7 @@ public class WoodBurning : MonoBehaviour {
         {
             animator.SetBool("isBurnt", true);
             //audio.Play();
-            GetComponent<BoxCollider2D>().enabled = false;
+            collider2D.enabled = false;
         }
     }
 }

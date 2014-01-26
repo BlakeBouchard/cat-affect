@@ -13,11 +13,11 @@ public class SandDissolve : MonoBehaviour {
 
         GameObject water = GameObject.Find("water");
 
-        if (water.GetComponent<BoxCollider2D>().size.y + water.transform.position.y >= gameObject.transform.position.y + 4)
+        if (water.GetComponent<BoxCollider2D>().size.y + water.transform.position.y >= gameObject.transform.position.y + 4 && animator.GetBool("isDissolved") == false)
         {
             animator.SetBool("isDissolved", true);
-            //audio.Play();
-            GetComponent<BoxCollider2D>().enabled = false;
+            collider2D.enabled = false;
+            audio.Play();
         }
 	}
 }
