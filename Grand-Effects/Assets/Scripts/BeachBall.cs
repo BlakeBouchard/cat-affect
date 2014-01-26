@@ -5,12 +5,11 @@ public class BeachBall : MonoBehaviour {
 
     Animator animator;
     bool ballIsPopped = false;
-    GameScreens gameScreens;
+    public Transform levelComplete;
 
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
-        gameScreens = GameObject.Find("Main Camera").GetComponent<GameScreens>();
 	}
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -27,7 +26,7 @@ public class BeachBall : MonoBehaviour {
         Debug.Log("Ball popped");
         ballIsPopped = true;
         audio.Play();
-        gameScreens.levelComplete();
+        Instantiate(levelComplete, new Vector3(0, 0, -7), Quaternion.identity);
     }
 
 	// Update is called once per frame

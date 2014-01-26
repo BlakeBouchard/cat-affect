@@ -11,7 +11,7 @@ public class NextScene : MonoBehaviour {
     void OnMouseDown()
     {
         Debug.Log("Clicked Next Arrow");
-        if (Application.loadedLevel <= Application.levelCount)
+        if (Application.loadedLevel < Application.levelCount - 1)
         {
             Application.LoadLevel(Application.loadedLevel + 1);
         }
