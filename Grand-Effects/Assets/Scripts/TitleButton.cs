@@ -22,6 +22,7 @@ public class TitleButton : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        /*
         if (false && Input.GetMouseButtonDown(0))
         {
             Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -33,5 +34,6 @@ public class TitleButton : MonoBehaviour {
                 Application.LoadLevel("level1");
             }
         }
+        */
 	}
 }
